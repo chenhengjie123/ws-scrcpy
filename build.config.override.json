@@ -1,1 +1,4 @@
-{}
+{
+    "USE_QVH_SERVER": true,
+    "INCLUDE_APPL": true
+}
