@@ -31,13 +31,16 @@ export abstract class ProcessRunner<T extends ProcessRunnerEvents> extends Typed
             throw new Error('Empty command');
         }
         const args = await this.getArgs();
+        console.log('cmd: ', this.cmd, '; args: ' + args);
         this.proc = spawn(this.cmd, args, { stdio: ['pipe', 'pipe', 'pipe'] });
 
         this.proc.stdout.on('data', (data) => {
+            console.log(this.name, ' stdout: ', data.toString());
             this.emit('stdout', data.toString());
         });
 
         this.proc.stderr.on('data', (data) => {
+            console.log(this.name, ' stderr: ', data.toString());
             this.emit('stderr', data);
         });
 

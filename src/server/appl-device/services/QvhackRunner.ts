@@ -53,10 +53,12 @@ export class QvhackRunner extends ProcessRunner<ProcessRunnerEvents> {
         const port = await portfinder.getPortPromise();
         const host = `127.0.0.1:${port}`;
         this.address = `ws://${host}/ws?stream=${encodeURIComponent(this.udid)}`;
+        console.log('qvhackRunner url: ', this.address);
         return [host];
     }
 
     public async start(): Promise<void> {
+        console.log('qvhackRunner start');
         return this.runProcess()
             .then(() => {
                 // Wait for server to start listen on a port
